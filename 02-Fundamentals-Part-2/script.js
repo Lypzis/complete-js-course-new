@@ -42,3 +42,21 @@ function fruitProcessor(apples, oranges) {
 
   return `Juice with ${applePieces} apples and ${orangePieces} oranges.`;
 }
+
+const person = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  birthYear: 1991,
+  job: "teacher",
+  friends: ["Michael", "Peter", "Steven"],
+  /* calcAge: function (birthYear) {
+    return 2037 - birthYear;
+  }, */
+  calcAge: function () {
+    return 2037 - this.birthYear;
+  },
+};
+
+const age = person.age;
+const job = person["job"];
+const { firstName, lastName } = person;

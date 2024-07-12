@@ -1,13 +1,13 @@
-"use strict"; // "secure" code mode, will show errors otherwise silent to the console
+'use strict'; // "secure" code mode, will show errors otherwise silent to the console
 
 let hasDriversLicense = false;
 const passTest = true;
 
 if (passTest) hasDriversLicense = true;
-if (hasDriversLicense) console.log("I can drive :D");
+if (hasDriversLicense) console.log('I can drive :D');
 
 function logger() {
-  console.log("My name is Victor");
+  console.log('My name is Victor');
 }
 
 logger();
@@ -23,9 +23,9 @@ const calcAge2 = function (birthYear) {
 };
 
 // Simple arrow function
-const calcAge3 = (birthYear) => 2037 - birthYear;
+const calcAge3 = birthYear => 2037 - birthYear;
 
-const yearsUntilRetirement = (birthYear) => {
+const yearsUntilRetirement = birthYear => {
   const age = 2037 - birthYear;
   const retirement = 65 - age;
 
@@ -44,11 +44,11 @@ function fruitProcessor(apples, oranges) {
 }
 
 const person = {
-  firstName: "Jonas",
-  lastName: "Schmedtmann",
+  firstName: 'Jonas',
+  lastName: 'Schmedtmann',
   birthYear: 1991,
-  job: "teacher",
-  friends: ["Michael", "Peter", "Steven"],
+  job: 'teacher',
+  friends: ['Michael', 'Peter', 'Steven'],
   /* calcAge: function (birthYear) {
     return 2037 - birthYear;
   }, */
@@ -58,7 +58,7 @@ const person = {
 };
 
 const age = person.age;
-const job = person["job"];
+const job = person['job'];
 const { firstName, lastName } = person;
 
 const calcTip = function (bill) {
@@ -67,7 +67,7 @@ const calcTip = function (bill) {
 
 /* Write your code below. Good luck! 🙂 */
 
-const calcAverage = (arr) => {
+const calcAverage = arr => {
   const initialValue = 0;
   const sum = arr.reduce(
     (accumulator, currentValue) => accumulator + currentValue,
@@ -94,3 +94,19 @@ for (let i = 0; i < bills.length; i++) {
 console.log(tips);
 console.log(totals);
 console.log(calcAverage(totals));
+
+const printForecast = arr => {
+  let stringRes = '';
+
+  arr.forEach((value, index) => {
+    if (typeof value === 'number') {
+      // if 0
+      if (!index) stringRes += '... ';
+
+      stringRes += `${value}ºC in ${index + 1} days ... `;
+    }
+  });
+
+  // if empty, no forecasts
+  stringRes ? console.log(stringRes) : console.log('No Forecasts :(');
+};

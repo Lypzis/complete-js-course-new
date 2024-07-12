@@ -60,3 +60,37 @@ const person = {
 const age = person.age;
 const job = person["job"];
 const { firstName, lastName } = person;
+
+const calcTip = function (bill) {
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+};
+
+/* Write your code below. Good luck! 🙂 */
+
+const calcAverage = (arr) => {
+  const initialValue = 0;
+  const sum = arr.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initialValue
+  );
+
+  return sum / arr.length;
+};
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+const tips = [];
+
+const totals = [];
+
+for (let i = 0; i < bills.length; i++) {
+  const tip = calcTip(bills[i]);
+
+  tips.push(tip);
+
+  totals.push(bills[i] + tip);
+}
+
+console.log(tips);
+console.log(totals);
+console.log(calcAverage(totals));

@@ -101,8 +101,10 @@ guessValueEl.addEventListener('input', function () {
   this.value = this.value.replace(/[eE+-]/g, '');
 });
 
+// Reset game on 'Again' button click
 againButtonEl.addEventListener('click', resetGame);
 
+// Check the guess on 'Check' button click
 checkButtonEl.addEventListener('click', () => {
   const guessValue = Number(guessValueEl.value);
 

@@ -13,8 +13,10 @@ document.querySelector('.score').textContent = 20;
 document.querySelector('.guess').value = 23;
 console.log(document.querySelector('.guess').value); */
 
+// Helper function to get DOM elements
 const getEl = elClass => document.querySelector(elClass);
 
+// Get DOM elements
 const guessValueEl = getEl('.guess');
 const checkButtonEl = getEl('.btn.check');
 const againButtonEl = getEl('.btn.again');
@@ -22,33 +24,57 @@ const messageEl = getEl('.message');
 const numberEl = getEl('.number');
 const scoreEl = getEl('.score');
 const bodyEl = getEl('body');
+const highscoreEl = getEl('.highscore');
 
-// state variables, as parte of the state of the application
+// State variables
 let secretNumber = generateSecretNumber();
 let score = 20;
-////////////////////////
+let highscore = 0;
 
+// Generate a secret number
 function generateSecretNumber() {
   return Math.trunc(Math.random() * 20);
 }
 
-function checkWrongSecretNumber(customMessage) {
+// Update message and score
+function updateMessageAndScore(message, newScore) {
+  messageEl.textContent = message;
+  scoreEl.textContent = newScore;
+}
+
+// Check if guess is wrong
+function checkWrongSecretNumber(guessValue) {
   if (score > 1) {
     score--;
-    messageEl.textContent = customMessage;
-    scoreEl.textContent = score;
+    updateMessageAndScore(
+      guessValue > secretNumber ? 'Too high!' : 'Too low!',
+      score
+    );
   } else {
-    messageEl.textContent = 'You lost the game!';
-    scoreEl.textContent = 0;
+    updateMessageAndScore('You lost the game!' ? 'Too high!' : 'Too low!', 0);
   }
 }
 
-// only litteral numbers allowed in the input :D
-guessValueEl.addEventListener('input', function () {
-  this.value = this.value.replace(/[eE+-]/g, '');
-});
+// Handle the correct guess
+function handleCorrectGuess() {
+  numberEl.textContent = secretNumber;
+  messageEl.textContent = 'Correct number!';
 
-againButtonEl.addEventListener('click', () => {
+  // inline styles
+  bodyEl.style.backgroundColor = '#60b347';
+  numberEl.style.width = '30rem';
+
+  // disable check button
+  checkButtonEl.disabled = true;
+
+  if (score > highscore) {
+    highscore = score;
+    highscoreEl.textContent = highscore;
+  }
+}
+
+// Reset the game
+function resetGame() {
   // reset score
   score = 20;
   scoreEl.textContent = score;
@@ -68,33 +94,23 @@ againButtonEl.addEventListener('click', () => {
 
   // reenables check button
   checkButtonEl.disabled = false;
+}
+
+// only litteral numbers allowed in the input :D
+guessValueEl.addEventListener('input', function () {
+  this.value = this.value.replace(/[eE+-]/g, '');
 });
+
+againButtonEl.addEventListener('click', resetGame);
 
 checkButtonEl.addEventListener('click', () => {
   const guessValue = Number(guessValueEl.value);
 
-  // no input
   if (!guessValue) {
     messageEl.textContent = 'No number!';
-  }
-  // player wins
-  else if (guessValue === secretNumber) {
-    numberEl.textContent = secretNumber;
-    messageEl.textContent = 'Correct number!';
-
-    // inline styles
-    bodyEl.style.backgroundColor = '#60b347';
-    numberEl.style.width = '30rem';
-
-    // disable check button
-    checkButtonEl.disabled = true;
-  }
-  // wrong number
-  else if (guessValue > secretNumber) {
-    checkWrongSecretNumber('Too high!');
-  }
-  // wrong number
-  else if (guessValue < secretNumber) {
-    checkWrongSecretNumber('Too low!');
+  } else if (guessValue === secretNumber) {
+    handleCorrectGuess();
+  } else if (guessValue !== secretNumber) {
+    checkWrongSecretNumber(guessValue);
   }
 });

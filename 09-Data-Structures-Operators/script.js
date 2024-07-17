@@ -736,8 +736,6 @@ GOOD LUCK 😀
 
 /* --------------------------------------------- */
 
-/* --------------------------------------------- */
-
 ///////////////////////////////////////
 // Coding Challenge #3
 
@@ -754,41 +752,270 @@ and the keys are the minutes in which each event happened (a football game has 9
 GOOD LUCK 😀
 */
 
-const gameEvents = new Map([
-  [17, '⚽️ GOAL'],
-  [36, '🔁 Substitution'],
-  [47, '⚽️ GOAL'],
-  [61, '🔁 Substitution'],
-  [64, '🔶 Yellow card'],
-  [69, '🔴 Red card'],
-  [70, '🔁 Substitution'],
-  [72, '🔁 Substitution'],
-  [76, '⚽️ GOAL'],
-  [80, '⚽️ GOAL'],
-  [92, '🔶 Yellow card'],
-]);
+// const gameEvents = new Map([
+//   [17, '⚽️ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽️ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽️ GOAL'],
+//   [80, '⚽️ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
 
-// 1
-const eventsOccured = new Set(gameEvents.values());
-console.log(eventsOccured);
+// // 1
+// const eventsOccured = new Set(gameEvents.values());
+// console.log(eventsOccured);
 
-// 2
-gameEvents.delete(64);
-console.log(gameEvents);
+// // 2
+// gameEvents.delete(64);
+// console.log(gameEvents);
 
-// 3
-console.log(
-  `An event happened, on average, every ${90 / gameEvents.size} minutes`
-);
-const time = [...gameEvents.keys()].pop();
-console.log(time);
-console.log(
-  `An event happened, on average, every ${time / gameEvents.size} minutes`
-);
+// // 3
+// console.log(
+//   `An event happened, on average, every ${90 / gameEvents.size} minutes`
+// );
+// const time = [...gameEvents.keys()].pop();
+// console.log(time);
+// console.log(
+//   `An event happened, on average, every ${time / gameEvents.size} minutes`
+// );
 
-// 4
-gameEvents.forEach((value, key) => {
-  console.log(
-    `${key < 45 ? '[FIRST HALF]' : '[SECOND HALF]'} ${key}: ${value}`
-  );
-});
+// // 4
+// gameEvents.forEach((value, key) => {
+//   console.log(
+//     `${key < 45 ? '[FIRST HALF]' : '[SECOND HALF]'} ${key}: ${value}`
+//   );
+// });
+/* --------------------------------------------- */
+
+// Strings
+
+// const airline = 'TAP Air Portugal';
+
+// const plane = 'A320';
+
+// console.log(plane[0]);
+// console.log('B73d'[0]);
+
+// console.log('hahah'.length);
+// console.log(airline.length);
+
+// console.log(airline.indexOf('r'));
+// console.log(airline.lastIndexOf('r'));
+// console.log(airline.indexOf('portugal'));
+
+// console.log(airline.slice(4));
+// console.log(airline.slice(4, 7));
+
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+// console.log(airline.slice(-2));
+// console.log(airline.slice(1, -1));
+
+// const checkMiddleSeat = seat => {
+//   // B and E are middle seats
+//   const s = seat.slice(-1); // negative numbers will make it start from the end
+
+//   if (s === 'B' || s === 'E') console.log('You got the middle seat :(');
+//   else console.log('You got lucky!');
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
+
+// console.log(new String('jonas'));
+// console.log(typeof new String('jonas'));
+// console.log(typeof new String('jonas').slice(1));
+
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+
+// // Fix capitalization in name
+// const passenger = 'jOnAS'; // Jonas
+// const passengerLower = passenger.toLocaleLowerCase();
+// const passengerCorrect =
+//   passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// console.log(passengerCorrect);
+
+// // Comparing emails
+// const email = 'hello@jonas.io';
+// const loginEmail = ' Hello@Jonas.io \n';
+
+// const lowerEmail = loginEmail.toLowerCase().trim();
+
+// console.log(email === lowerEmail);
+
+// Replacing
+// const priceGB = '288,97L';
+// const priceUS = priceGB.replace('L', '$').replace(',', '.');
+// console.log(priceUS);
+
+// const announcement =
+//   'All passengers come to boarding door 23, Boarding door 23!';
+
+// console.log(announcement.replace('door', 'gate'));
+// console.log(announcement.replaceAll('door', 'gate'));
+
+// console.log(announcement.replace(/door/g, 'gate'));
+
+// // Booleans
+// const plane = 'Airbus A230neo';
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+// console.log(plane.startsWith('Air'));
+
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of the NEW Airbus family');
+// }
+
+// // Practice Exercise
+// const checkBaggage = items => {
+//   const baggage = items.toLowerCase();
+
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log('You are NOT allowed on board!');
+//   } else console.log('Welcome aboard!');
+// };
+
+// checkBaggage('I have a laptop, some Food and a pocket Knife');
+// checkBaggage('Socks and camera');
+// checkBaggage('Got some snacks and a gun for protection');
+
+// console.log('a+very+nice+string'.split('+'));
+// console.log('Jonas Schmedtmann'.split(' '));
+
+// const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+
+// const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+// console.log(newName);
+
+// const capitalizeName = name => {
+//   const names = name.toLowerCase().split(' ');
+
+//   const namesUpper = new Set();
+
+//   for (const n of names) {
+//     namesUpper.add(n.replace(n[0], n[0].toUpperCase()));
+//   }
+
+//   return [...namesUpper].join(' ');
+// };
+
+// const passenger = 'jessica ann smith davis';
+
+// console.log(capitalizeName(passenger));
+
+// // Padding
+// const message = 'Go to gate 23!';
+// console.log(message.padStart(25, '+').padEnd(35, '+'));
+// console.log('Jonas'.padEnd(25, '+').padStart(35, '+'));
+
+// const maskCreditCard = number => {
+//   const str = number + ''; // + '' turns number into string :D
+
+//   // the last four digits
+//   const last = str.slice(-4);
+
+//   // fill rest with *
+//   return last.padStart(str.length, '*');
+// };
+
+// console.log(maskCreditCard(2344454));
+// console.log(maskCreditCard(23444542343434378));
+// console.log(maskCreditCard('03093847823894932234'));
+
+// // Repeat
+// const message2 = 'Bad weather... All departures Delayed...';
+// console.log(message2.repeat(5));
+
+// const planesInLine = n => {
+//   console.log(`There are ${n} planes in line ${'plane emoji'.repeat(n)}`);
+// };
+
+// planesInLine(5);
+// planesInLine(3);
+// planesInLine(12);
+
+/* --------------------------------------------- */
+///////////////////////////////////////
+// Coding Challenge #4
+
+/* 
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+THIS TEST DATA (pasted to textarea)
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
+
+HINT 1: Remember which character defines a new line in the textarea 😉
+HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+
+Afterwards, test with your own test data!
+
+GOOD LUCK 😀
+*/
+
+// get h1
+const h1 = document.querySelector('h1');
+
+// text area
+const textBox = document.createElement('textarea');
+textBox.value = `underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure`;
+
+// button
+const button = document.createElement('button');
+button.innerText = 'click me :D';
+
+h1.insertAdjacentElement('afterend', textBox);
+textBox.insertAdjacentElement('afterend', button);
+
+const convertCamelCase = variables => {
+  const arrOfVars = [
+    ...new Set(variables.split('\n').map(v => v.trim().toLowerCase())),
+  ];
+
+  // Determine the longest variable for padding
+  const maxLength = Math.max(...arrOfVars.map(v => v.length));
+
+  arrOfVars.forEach((value, key) => {
+    // replaces all ocurrences of underscore followed by a letter, by the letter in uppercase
+    const normalizedText = value.replace(/_([a-z])/g, (_, p1) =>
+      p1.toUpperCase()
+    );
+
+    console.log(
+      `${normalizedText}${''.padEnd(
+        maxLength - normalizedText.length,
+        ' '
+      )}${''.padEnd(key + 1, '✅')}`
+    );
+  });
+};
+
+button.addEventListener('click', () => convertCamelCase(textBox.value));
+
+/* --------------------------------------------- */

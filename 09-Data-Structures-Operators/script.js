@@ -4,6 +4,22 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+
+  const isDelayed = type.startsWith('_Delayed');
+  const formattedType = type.replaceAll('_', ' ');
+  const formattedTime = time.replace(':', 'h');
+
+  const output = `${isDelayed ? '🔴' : ''} ${formattedType} from ${getCode(
+    from
+  )} to ${getCode(to)} (${formattedTime})`.padStart(50, ' ');
+
+  console.log(output);
+}
+
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -976,46 +992,46 @@ GOOD LUCK 😀
 */
 
 // get h1
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 
-// text area
-const textBox = document.createElement('textarea');
-textBox.value = `underscore_case
- first_name
-Some_Variable 
-  calculate_AGE
-delayed_departure`;
+// // text area
+// const textBox = document.createElement('textarea');
+// textBox.value = `underscore_case
+//  first_name
+// Some_Variable
+//   calculate_AGE
+// delayed_departure`;
 
-// button
-const button = document.createElement('button');
-button.innerText = 'click me :D';
+// // button
+// const button = document.createElement('button');
+// button.innerText = 'click me :D';
 
-h1.insertAdjacentElement('afterend', textBox);
-textBox.insertAdjacentElement('afterend', button);
+// h1.insertAdjacentElement('afterend', textBox);
+// textBox.insertAdjacentElement('afterend', button);
 
-const convertCamelCase = variables => {
-  const arrOfVars = [
-    ...new Set(variables.split('\n').map(v => v.trim().toLowerCase())),
-  ];
+// const convertCamelCase = variables => {
+//   const arrOfVars = [
+//     ...new Set(variables.split('\n').map(v => v.trim().toLowerCase())),
+//   ];
 
-  // Determine the longest variable for padding
-  const maxLength = Math.max(...arrOfVars.map(v => v.length));
+//   // Determine the longest variable for padding
+//   const maxLength = Math.max(...arrOfVars.map(v => v.length));
 
-  arrOfVars.forEach((value, key) => {
-    // replaces all ocurrences of underscore followed by a letter, by the letter in uppercase
-    const normalizedText = value.replace(/_([a-z])/g, (_, p1) =>
-      p1.toUpperCase()
-    );
+//   arrOfVars.forEach((value, key) => {
+//     // replaces all ocurrences of underscore followed by a letter, by the letter in uppercase
+//     const normalizedText = value.replace(/_([a-z])/g, (_, p1) =>
+//       p1.toUpperCase()
+//     );
 
-    console.log(
-      `${normalizedText}${''.padEnd(
-        maxLength - normalizedText.length,
-        ' '
-      )}${''.padEnd(key + 1, '✅')}`
-    );
-  });
-};
+//     console.log(
+//       `${normalizedText}${''.padEnd(
+//         maxLength - normalizedText.length,
+//         ' '
+//       )}${''.padEnd(key + 1, '✅')}`
+//     );
+//   });
+// };
 
-button.addEventListener('click', () => convertCamelCase(textBox.value));
+// button.addEventListener('click', () => convertCamelCase(textBox.value));
 
 /* --------------------------------------------- */

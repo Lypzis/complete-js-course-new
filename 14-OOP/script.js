@@ -635,70 +635,49 @@ DATA CAR 1: 'Rivian' going at 120 km/h, with a charge of 23%
 GOOD LUCK 😀
 */
 
-// class Car {
-//   constructor(make, speed) {
-//     this.make = make;
-//     this.speed = speed;
-//   }
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
 
-//   accelerate() {
-//     this.speed += 10;
-//     console.log(this.speed);
-//   }
+  accelerate() {
+    this.speed += 10;
+    console.log(this.speed);
+  }
 
-//   brake() {
-//     this.speed -= 5;
-//     console.log(this.speed);
-//   }
+  brake() {
+    this.speed -= 5;
+    console.log(this.speed);
+    return this;
+  }
+}
 
-//   get speedUs() {
-//     return this.speed / 1.6;
-//   }
+class EVCl extends CarCl {
+  #charge;
 
-//   set speedUs(speed) {
-//     this.speed = speed * 1.6;
-//   }
-// }
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
 
-const Car = function (make, speed) {
-  this.make = make;
-  this.speed = speed;
-};
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
 
-Car.prototype.accelerate = function () {
-  this.speed += 10;
-  console.log(this.speed);
-};
+  accelerate() {
+    this.speed += 20;
+    this.#charge -= 1;
+    console.log(
+      `${this.make} going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+}
 
-Car.prototype.brake = function () {
-  this.speed -= 5;
-  console.log(this.speed);
-};
+const ev = new EVCl('Rivian', 120, 23);
 
-// 1
-const EV = function (make, speed, charge) {
-  Car.call(this, make, speed);
-  this.charge = charge;
-};
-
-EV.prototype = Object.create(Car.prototype);
-
-EV.prototype.chargeBattery = function (chargeTo) {
-  this.charge = chargeTo;
-};
-
-EV.prototype.accelerate = function () {
-  this.speed += 20;
-  this.charge -= 1;
-  console.log(
-    `${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`
-  );
-};
-
-const ev = new EV('Tesla', 120, 23);
-
-ev.accelerate();
-ev.brake();
-ev.chargeBattery(90);
-
-console.log(ev);
+ev.accelerate().chargeBattery(90).brake().accelerate();
